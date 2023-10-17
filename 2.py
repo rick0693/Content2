@@ -356,40 +356,10 @@ def Coleta_Dados():
 
 
 
-# Função para a página de Dados
-def bot_final_page():
-    st.title("Manipulação de Dados")
-
-    # Carregar os dados do banco de dados
-    conn = sqlite3.connect('consultas.db')
-    df = pd.read_sql_query("SELECT * FROM consultas", conn)
-    conn.close()
-
-    # Exibir o DataFrame
-    st.dataframe(df)
-
-    # Opções para manipulação de dados
-    st.sidebar.subheader("Opções de Manipulação de Dados")
-
-    # Filtrar por Status
-    status_options = df['STATUS'].unique()
-    selected_status = st.sidebar.selectbox("Filtrar por Status:", status_options)
-    filtered_df = df[df['STATUS'] == selected_status]
-
-    # Exibir o DataFrame filtrado
-    st.subheader(f"Resultados filtrados por Status: {selected_status}")
-    st.dataframe(filtered_df)
-
-    # Download do DataFrame filtrado
-    st.sidebar.subheader("Download do DataFrame")
-    download_format = st.sidebar.selectbox("Selecione o formato de download:", ["CSV", "XLSX", "PDF"])
-
-    if st.sidebar.button("Download"):
-        if download_format == "CSV":
-            csv_data = filtered_df.to_csv(index=False)
-            st.download_button("Baixar CSV", csv_data, "filtered_data.csv", "text/csv")
-
-
+import streamlit as st
+import pandas as pd
+import sqlite3
+import pdfkit
 
 # Função para a página de Dados
 def bot_final_page():
@@ -406,34 +376,38 @@ def bot_final_page():
     # Opções para manipulação de dados
     st.sidebar.subheader("Opções de Manipulação de Dados")
 
-    # Filtrar por Status
-    status_options = df['STATUS'].unique()
-    selected_status = st.sidebar.selectbox("Filtrar por Status:", status_options)
-    filtered_df = df[df['STATUS'] == selected_status]
+    # Filtrar por colunas
+    st.sidebar.subheader("Filtrar por Colunas")
+    selected_columns = st.sidebar.multiselect("Selecione as colunas para exibir:", df.columns)
+    if selected_columns:
+        df = df[selected_columns]
 
-    # Exibir o DataFrame filtrado
-    st.subheader(f"Resultados filtrados por Status: {selected_status}")
-    st.dataframe(filtered_df)
+    # Verificar se 'STATUS' está presente no DataFrame
+    if 'STATUS' in df.columns:
+        # Filtrar por Status
+        status_options = df['STATUS'].unique()
+        selected_status = st.sidebar.selectbox("Filtrar por Status:", status_options)
+        filtered_df = df[df['STATUS'] == selected_status]
 
-    # Download do DataFrame filtrado
-    st.sidebar.subheader("Download do DataFrame")
-    download_format = st.sidebar.selectbox("Selecione o formato de download:", ["CSV", "XLSX", "PDF"])
+        # Exibir o DataFrame filtrado
+        st.subheader(f"Resultados filtrados por Status: {selected_status}")
+        st.dataframe(filtered_df)
 
-    if st.sidebar.button("Download"):
-        if download_format == "XLSX":
-            # Correção: Usar to_excel diretamente para salvar o arquivo Excel
-            excel_filename = "filtered_data.xlsx"
-            # Salvar o DataFrame como um arquivo Excel
-            filtered_df.to_excel(excel_filename, index=False, engine="openpyxl")
+        # Download do DataFrame filtrado
+        st.sidebar.subheader("Download do DataFrame")
+        download_format = st.sidebar.selectbox("Selecione o formato de download:", ["CSV", "XLSX", "PDF"])
 
-            # Adicionar o botão de download
-            with open(excel_filename, 'rb') as f:
-                excel_data = f.read()
-            st.download_button("Baixar Excel", excel_data, file_name="filtered_data.xlsx", key="excel-download")
+        if st.sidebar.button("Download"):
+            if download_format == "XLSX":
+                excel_filename = "filtered_data.xlsx"
+                filtered_df.to_excel(excel_filename, index=False, engine="openpyxl")
+                with open(excel_filename, 'rb') as f:
+                    excel_data = f.read()
+                st.download_button("Baixar Excel", excel_data, file_name="filtered_data.xlsx", key="excel-download")
 
-        elif download_format == "CSV":
-            csv_data = filtered_df.to_csv(index=False)
-            st.download_button("Baixar CSV", csv_data, file_name="filtered_data.csv", key="csv-download", help="Baixar planilha CSV")
+            elif download_format == "CSV":
+                csv_data = filtered_df.to_csv(index=False)
+                st.download_button("Baixar CSV", csv_data, file_name="filtered_data.csv", key="csv-download", help="Baixar planilha CSV")
 
 
 pages = {
