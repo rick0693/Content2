@@ -8,7 +8,12 @@ from datetime import datetime
 import sqlite3
 
 
-
+st.set_page_config(
+    page_title="Dona sorte",
+    page_icon=":robot_face:",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 # Função para a página de Notícias
 def Coleta_Dados():
 
