@@ -9,7 +9,7 @@ import sqlite3
 
 
 st.set_page_config(
-    page_title="Dona sorte",
+    page_title="Consulta_SSW",
     page_icon=":robot_face:",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -350,7 +350,9 @@ def Coleta_Dados():
 
 # Função para a página de Dados
 def bot_final_page():
-    st.title("Manipulação de Dados")
+    st.title("Manipulação de Dados
+    Baixe uma versão da planilha no link:  https://docs.google.com/spreadsheets/d/1MnvXlKEnP8P-E6SRz96sqQBc_LPk-JBZ/edit#gid=1303158083
+             ")
 
     # Carregar os dados do banco de dados
     conn = sqlite3.connect('consultas.db')
