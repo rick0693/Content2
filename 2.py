@@ -404,6 +404,7 @@ def bot_final_page():
                 st.download_button("Baixar CSV", csv_data, file_name="filtered_data.csv", key="csv-download", help="Baixar planilha CSV")
 
 
+
 pages = {
     "Content": Coleta_Dados,
     "Dados": bot_final_page   
