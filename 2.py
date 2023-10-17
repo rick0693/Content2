@@ -271,17 +271,27 @@ def Coleta_Dados():
             'cnpj': '07117654000149',
             'senha': 'FOTUS@',
         },
-        'CT DISTRIBUICAO E LOGISTICA LTDA': {
+        'FITLOG TRANSPORTES E LOGISTICA': {
             'cnpj': '07117654000149',
-            'senha': 'FOTUS@',
+            'senha': 'FOTUS23',
         },
-        'CT DISTRIBUICAO E LOGISTICA LTDA': {
+        'CONVENTO LOGISTICA E TRANSPORTES LTDA': {
             'cnpj': '07117654000149',
-            'senha': 'FOTUS@',
+            'senha': ' ',
         },
-        # Adicione mais empresas conforme necessário
-    }
 
+        'JEONCEL TRANSPORTES LTDA': {
+            'cnpj': '07117654000149',
+            'senha': 'JEO@397',
+        },
+
+        'M V G TRANSPORTES EIRELI': {
+            'cnpj': '07117654000149',
+            'senha': '07117654',
+        },
+
+
+ }
     # Instância da classe de consulta
     consulta_notas = ConsultaNotas(url, dados_login_empresa)
 
