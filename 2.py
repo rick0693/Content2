@@ -7,6 +7,13 @@ import time
 from datetime import datetime
 import sqlite3
 
+import pandas as pd
+import sqlite3
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.lib import colors
+from datetime import datetime
+from reportlab.platypus import Paragraph
 
 
 
@@ -343,10 +350,6 @@ def Coleta_Dados():
 
 
 
-import streamlit as st
-import pandas as pd
-import sqlite3
-import pdfkit
 
 # Função para a página de Dados
 def bot_final_page():
