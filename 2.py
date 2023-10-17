@@ -7,14 +7,6 @@ import time
 from datetime import datetime
 import sqlite3
 
-import pandas as pd
-import sqlite3
-from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
-from reportlab.lib import colors
-from datetime import datetime
-from reportlab.platypus import Paragraph
-
 
 
 # Função para a página de Notícias
