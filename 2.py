@@ -256,7 +256,6 @@ def Coleta_Dados():
 
     # URL para consulta
     url = 'https://ssw.inf.br/2/resultSSW'
-
     # Dados de login para empresas
     dados_login_empresa = {
         'TG TRANSPORTES GERAIS E DISTRIBUICAO LTDA': {
@@ -288,6 +287,11 @@ def Coleta_Dados():
         'M V G TRANSPORTES EIRELI': {
             'cnpj': '07117654000149',
             'senha': '07117654',
+        },
+
+        'NJP EXPRESS LTDA': {
+            'cnpj': '07117654000149',
+            'senha': ' ',
         },
 
 
